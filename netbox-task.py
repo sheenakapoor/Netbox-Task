@@ -1,16 +1,14 @@
-# https://github.com/sheenakapoor/netbox-task.git
-
 # taking input from the user for their Zip Code and displaying it
 zipcode = input("User's US Post Office Zip Code: ")
 print(zipcode)
 
-#importing libraries
+# importing libraries
 import requests
 
-#generating url base on user's zip code
+# generating url based on user's zip code
 url = "http://wttr.in/" + zipcode
 
-#converting to json
+# getting JSON weather report
 params = (('format', 'j1'),)
 response = requests.get(url, params=params).json()
 # printing json output
@@ -28,22 +26,23 @@ r_C = requests.get(url, params=params3).json()
 
 print('The weather conditions in your location are displayed below:',"\n",r_t,"\n",r_f,"\n",r_C)
 
-# Conversion of current actual temperature from F to C.
 
-# retrieving actual temperature 
+# Conversion of current temperature from F to C.
+
+# retrieving current temperature 
 t_param = (('format', '"%t"'),)
-actual_temp = requests.get(url, params=t_param).json()
+current_temp = requests.get(url, params=t_param).json()
 # slicing to get sign and digits of temperature, converting string to float
-F_actual = float(actual_temp[0:3])
+F_current = float(current_temp[0:3])
 
 # converting fahrenheit to celcius and rounding it to one decimal
-C_actual = round(((5/9) * (F_actual-32)), 1)
-print(f'The Actual Temperature in Celcius is {C}°C')
+C_current = round(((5/9) * (F_current-32)), 1)
+print(f'The Actual Temperature in Celcius is {C_current}°C')
 
 
-# Conversion of current feels-like temperature from F to C.
+# Conversion of feels-like temperature now from F to C.
 
-# retrieving feels like temp
+# retrieving feels like temp now
 feel_t_param = (('format', '"%f"'),)
 feels_like_temp = requests.get(url, params=feel_t_param).json()
 # slicing to get sign and digits of temperature, converting string to float
@@ -56,7 +55,7 @@ print(f'The Feels-Like Temperature in Celcius is {C_feels_like}°C')
 # BONUS TASK
 
 # emojis for ranges of temp 
-num = C_actual
+num = C_current
 # custom ranges (4 different ranges)
 if num <= 0:
     print(f"Today's weather in your location: \u2744\uFE0F, {num}°C")
@@ -75,8 +74,8 @@ print(f'Weather forecast for three hours from now is as follows:')
 # retrieving data for 1 time step from now (at index 1)
 three_hours = response['weather'][0]['hourly'][1]
 
-#flt = feels like temperature, at = actual temperature, wd = weather description
+#flt = feels like temperature, ct = current temperature, wd = weather description
 next_flt = three_hours["FeelsLikeF"]
-next_at = three_hours["tempF"]
+next_ct = three_hours["tempF"]
 next_wd = three_hours["weatherDesc"][0]["value"]
-print(f'\n Feels like Temperature: {next_flt}°F \n Actual Temperature: {next_at}°F \n Weather Description: {next_wd}')
+print(f'\n Feels like Temperature: {next_flt}°F \n Current Temperature: {next_ct}°F \n Weather Description: {next_wd}')
