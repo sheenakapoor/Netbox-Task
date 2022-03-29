@@ -1,6 +1,6 @@
 # Taking input from user for Zip Code, displaying it
 zipcode = input("User's US Post Office Zip Code: ")
-print(zipcode)
+print(f'Zip Code: {zipcode} \n')
 
 # Importing Libraries
 import requests
@@ -39,7 +39,7 @@ def FtoC(F):
     return C_rounded
 
 # Displaying Temperatures in Celcius from the defined function FtoC
-print(f'The Actual Temperature in Celcius is {FtoC(temp_F_float)}°C')
+print(f'The Current Temperature in Celcius is {FtoC(temp_F_float)}°C')
 print(f'The Feels-Like Temperature in Celcius is {FtoC(FeelsLikeF_float)}°C \n')
 
 # BONUS TASK
@@ -63,7 +63,7 @@ elif num > 30:
 three_hours = response['weather'][0]['hourly'][1]
 
 #flt = feels like temperature, at = actual temperature, wd = weather description
-next_flt = three_hours["FeelsLikeF"]
 next_at = three_hours["tempF"]
+next_flt = three_hours["FeelsLikeF"]
 next_wd = three_hours["weatherDesc"][0]["value"]
-print(f'Weather forecast for three hours from now is as follows: \n Feels like Temperature: {next_flt}°F \n Actual Temperature: {next_at}°F \n Weather Description: {next_wd} \n')
+print(f'Weather forecast for three hours from now is as follows: \n Actual Temperature: {next_at}°F \n Feels like Temperature: {next_flt}°F \n Weather Description: {next_wd} \n')
