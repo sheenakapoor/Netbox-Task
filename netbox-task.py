@@ -63,7 +63,9 @@ elif num > 30:
 three_hours = response['weather'][0]['hourly'][1]
 
 #flt = feels like temperature, at = actual temperature, wd = weather description
-next_at = three_hours["tempF"]
-next_flt = three_hours["FeelsLikeF"]
+next_at_F = three_hours["tempF"]
+next_flt_F = three_hours["FeelsLikeF"]
+next_at_C = three_hours["tempC"]
+next_flt_C = three_hours["FeelsLikeC"]
 next_wd = three_hours["weatherDesc"][0]["value"]
-print(f'Weather forecast for three hours from now is as follows: \n Actual Temperature: {next_at}°F \n Feels like Temperature: {next_flt}°F \n Weather Description: {next_wd} \n')
+print(f'Weather forecast for three hours from now is as follows: \n Current Temperature: {next_at_F}°F = {next_at_C}°C \n Feels like Temperature: {next_flt_F}°F = {next_flt_C}°C \n Weather Description: {next_wd} \n')
