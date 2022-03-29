@@ -44,8 +44,8 @@ print(f'The Feels-Like Temperature in Celcius is {FtoC(FeelsLikeF_float)}°C \n'
 
 # BONUS TASK
 
-#Assigning variable to the current temperature obtained in Celcius
-num = C_current
+#Initializing variable for the current temperature obtained in Celcius
+num = FtoC(temp_F_float)
 
 # Displaying Emojis for Custom Ranges (4 different ranges) of Current Temperature (in Celcius)
 if num <= 0:
