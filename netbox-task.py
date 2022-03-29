@@ -1,23 +1,23 @@
 # Taking input from user for Zip Code, displaying it
-zipcode = input("User's US Post Office Zip Code: ")
-print(f'Zip Code: {zipcode} \n')
+zipcode = input("User's US Post Office ZIP Code: ")
+print(f'ZIP Code: {zipcode} \n')
 
 # Importing Libraries
 import requests
 
-# Generating URL based on User's Postal Zip Code
+# Generating URL based on User's Postal ZIP Code
 url = "http://wttr.in/" + zipcode
 
 # Converting to JSON
 params = (('format', 'j1'),)
 response = requests.get(url, params=params).json()
 
-# Getting the Current Temperature, Feels-Like Temperature, and Weather Description for user's Zip Code
+# Getting the Current Temperature, Feels-Like Temperature, and Weather Description for user's ZIP Code
 
 # The current condition key contains required information hence assigning variable and indexing it
 current_condition = response['current_condition'][0]
 
-# Assigning variables and indexing to get Current Temperature, Feels-Like Temperature and Weather Description for user's Zip Code
+# Assigning variables and indexing to get Current Temperature, Feels-Like Temperature and Weather Description for user's ZIP Code
 temp_F = current_condition['temp_F']
 FeelsLikeF = current_condition['FeelsLikeF']
 weatherDesc = current_condition['weatherDesc'][0]['value']
@@ -31,23 +31,23 @@ print(f"The weather conditions in your location are displayed below: \n Current 
 temp_F_float = float(temp_F)
 FeelsLikeF_float = float(FeelsLikeF)
 
-# Defining a function to convert units from Fahrenheit to Celcius
+# Defining a function to convert units from Fahrenheit to Celsius
 def FtoC(F):
     C = (5/9) * (F-32)
     # Rounding output to one decimal place
     C_rounded = round(C, 1)
     return C_rounded
 
-# Displaying Temperatures in Celcius from the defined function FtoC
-print(f'The Current Temperature in Celcius is {FtoC(temp_F_float)}°C')
-print(f'The Feels-Like Temperature in Celcius is {FtoC(FeelsLikeF_float)}°C \n')
+# Displaying Temperatures in Celsius from the defined function FtoC
+print(f'The Current Temperature in Celsius is {FtoC(temp_F_float)}°C')
+print(f'The Feels-Like Temperature in Celsius is {FtoC(FeelsLikeF_float)}°C \n')
 
 # BONUS TASK
 
-#Initializing variable for the current temperature obtained in Celcius
+#Initializing variable for the current temperature obtained in Celsius
 num = FtoC(temp_F_float)
 
-# Displaying Emojis for Custom Ranges (4 different ranges) of Current Temperature (in Celcius)
+# Displaying Emojis for Custom Ranges (4 different ranges) of Current Temperature (in Celsius)
 if num <= 0:
     print(f"Today's weather in your location: \u2744\uFE0F {num}°C \n")
 elif 0.1 <= num <= 15:
