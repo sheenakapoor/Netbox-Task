@@ -1,6 +1,6 @@
 # Taking input from user for Zip Code, displaying it
 zipcode = input("User's US Post Office ZIP Code: ")
-print(f'ZIP Code: {zipcode} \n')
+print(f"ZIP Code: {zipcode} \n")
 
 # Importing Libraries
 import requests
@@ -8,22 +8,35 @@ import requests
 # Generating URL based on User's Postal ZIP Code
 url = "http://wttr.in/" + zipcode
 
+# Checking for valid Zip Code
+# Generating URL 
+checkURL = "http://www.zip-codes.com/zip-code/" + zipcode
+
+# Test
+status_code = requests.get(checkURL).status_code
+
+if status_code == 404:
+    print("Invalid Zip Code, Try again")
+    exit()
+
 # Converting to JSON
-params = (('format', 'j1'),)
+params = (("format", "j1"),)
 response = requests.get(url, params=params).json()
 
 # Getting the Current Temperature, Feels-Like Temperature, and Weather Description for user's ZIP Code
 
 # The current condition key contains required information hence assigning variable and indexing it
-current_condition = response['current_condition'][0]
+current_condition = response["current_condition"][0]
 
 # Assigning variables and indexing to get Current Temperature, Feels-Like Temperature and Weather Description for user's ZIP Code
-temp_F = current_condition['temp_F']
-FeelsLikeF = current_condition['FeelsLikeF']
-weatherDesc = current_condition['weatherDesc'][0]['value']
+temp_F = current_condition["temp_F"]
+FeelsLikeF = current_condition["FeelsLikeF"]
+weatherDesc = current_condition["weatherDesc"][0]["value"]
 
 # Displaying weather conditions with temperatures in Fahrenheit
-print(f"The weather conditions in your location are displayed below: \n Current Temperature: {temp_F}°F \n Feels like Temperature: {FeelsLikeF}°F \n Weather Description: {weatherDesc} \n")
+print(
+    f"The weather conditions in your location are displayed below: \n Current Temperature: {temp_F}°F \n Feels like Temperature: {FeelsLikeF}°F \n Weather Description: {weatherDesc} \n"
+)
 
 # Conversion of Current Temperature and Feels-Like Temperature from F to C respectively.
 
@@ -33,18 +46,19 @@ FeelsLikeF_float = float(FeelsLikeF)
 
 # Defining a function to convert units from Fahrenheit to Celsius
 def FtoC(F):
-    C = (5/9) * (F-32)
+    C = (5 / 9) * (F - 32)
     # Rounding output to one decimal place
     C_rounded = round(C, 1)
     return C_rounded
 
+
 # Displaying Temperatures in Celsius from the defined function FtoC
-print(f'The Current Temperature in Celsius is {FtoC(temp_F_float)}°C')
-print(f'The Feels-Like Temperature in Celsius is {FtoC(FeelsLikeF_float)}°C \n')
+print(f"The Current Temperature in Celsius is {FtoC(temp_F_float)}°C")
+print(f"The Feels-Like Temperature in Celsius is {FtoC(FeelsLikeF_float)}°C \n")
 
 # BONUS TASK
 
-#Initializing variable for the current temperature obtained in Celsius
+# Initializing variable for the current temperature obtained in Celsius
 num = FtoC(temp_F_float)
 
 # Displaying Emojis for Custom Ranges (4 different ranges) of Current Temperature (in Celsius)
@@ -60,12 +74,14 @@ elif num > 30:
 # BONUS BONUS TASK
 
 # Since the JSON output has weather forecast data at a 3 hour time step, retrieving data for 1 time step from now at index 1:
-three_hours = response['weather'][0]['hourly'][1]
+three_hours = response["weather"][0]["hourly"][1]
 
-#flt = feels like temperature, at = actual temperature, wd = weather description
+# flt = feels like temperature, at = actual temperature, wd = weather description
 next_at_F = three_hours["tempF"]
 next_flt_F = three_hours["FeelsLikeF"]
 next_at_C = three_hours["tempC"]
 next_flt_C = three_hours["FeelsLikeC"]
 next_wd = three_hours["weatherDesc"][0]["value"]
-print(f'Weather forecast for three hours from now is as follows: \n Current Temperature: {next_at_F}°F = {next_at_C}°C \n Feels like Temperature: {next_flt_F}°F = {next_flt_C}°C \n Weather Description: {next_wd} \n')
+print(
+    f"Weather forecast for three hours from now is as follows: \n Current Temperature: {next_at_F}°F = {next_at_C}°C \n Feels like Temperature: {next_flt_F}°F = {next_flt_C}°C \n Weather Description: {next_wd} \n"
+)
