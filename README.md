@@ -9,3 +9,4 @@ A short python script is written to perform the following tasks-
 5. Show an emoji based on range of current temperature that was converted to Celsius units.
 6. Display weather forecast for three hours from current time.
 
+Run in terminal by simply typing ./netbox_task.py
