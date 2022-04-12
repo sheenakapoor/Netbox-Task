@@ -45,32 +45,33 @@ print(
     Current Temperature: {temp_F}°F
     Feels like Temperature: {FeelsLikeF}°F
     Weather Description: {weatherDesc} \n """
-    )
+)
 
-"""Conversion of Current Temperature and Feels-Like Temperature
-from F to C respectively."""
+# Conversion of Current Temperature and Feels-Like Temperature
+# from F to C respectively.
 
 # Changing type from str to float for Math Operations
 temp_F_float = float(temp_F)
 FeelsLikeF_float = float(FeelsLikeF)
 
 
-def FtoC(F):
+def f_to_c(f_temp):
     """Convert the units from Fahrenheit to Celsius."""
-    C = (5 / 9) * (F - 32)
+    c_temp = (5 / 9) * (f_temp - 32)
     # Rounding output to one decimal place
-    C_rounded = round(C, 1)
-    return C_rounded
+    c_rounded = round(c_temp, 1)
+    return c_rounded
 
 
 # Displaying Temperatures in Celsius from the defined function FtoC
-print(f"The Current Temperature in Celsius is {FtoC(temp_F_float)}°C")
-print(f"The Feels-Like Temperature in Celsius is {FtoC(FeelsLikeF_float)}°C\n")
+print(f"The Current Temperature in Celsius is {f_to_c(temp_F_float)}°C")
+print(f"""The Feels-Like Temperature in Celsius is {f_to_c(FeelsLikeF_float)}°C
+        \n""")
 
 # BONUS TASK
 
 # Initializing variable for the current temperature obtained in Celsius
-num = FtoC(temp_F_float)
+num = f_to_c(temp_F_float)
 
 """Displaying Emojis for Custom Ranges (4 different ranges) of
 Current Temperature (in Celsius)"""
@@ -86,9 +87,8 @@ elif num > 30:
 
 # BONUS BONUS TASK
 
-"""Since the JSON output has weather forecast data at a 3 hour time step,
-retrieving data for 1 time step from now at index 1:"""
-
+# Since the JSON output has weather forecast data at a 3 hour time step,
+# retrieving data for 1 time step from now at index 1
 three_hours = response["weather"][0]["hourly"][1]
 
 # flt: feels like temperature, at: actual temperature, wd: weather description
@@ -97,6 +97,7 @@ next_flt_F = three_hours["FeelsLikeF"]
 next_at_C = three_hours["tempC"]
 next_flt_C = three_hours["FeelsLikeC"]
 next_wd = three_hours["weatherDesc"][0]["value"]
+
 print(
     f"""Weather forecast for three hours from now is as follows:
      Current Temperature: {next_at_F}°F = {next_at_C}°C
