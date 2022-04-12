@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Python script for Netbox Internship Coding Task."""
 
 
