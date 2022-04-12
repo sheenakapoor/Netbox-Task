@@ -9,7 +9,7 @@ import requests
 url = "http://wttr.in/" + zipcode
 
 # Checking for valid Zip Code
-# Generating URL 
+# Generating URL
 checkURL = "http://www.zip-codes.com/zip-code/" + zipcode
 
 # Test
