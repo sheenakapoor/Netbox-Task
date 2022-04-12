@@ -65,8 +65,11 @@ def f_to_c(f_temp):
 
 # Displaying Temperatures in Celsius from the defined function FtoC
 print(f"The Current Temperature in Celsius is {f_to_c(temp_F_float)}°C")
-print(f"""The Feels-Like Temperature in Celsius is {f_to_c(FeelsLikeF_float)}°C
-        \n""")
+print(
+    f"""The Feels-Like Temperature in Celsius is {f_to_c(FeelsLikeF_float)}°C
+    \n"""
+)
+
 
 # BONUS TASK
 
